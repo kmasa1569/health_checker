@@ -1,0 +1,18 @@
+= form_with model: [:admin, user], local: true do |f|
+	.form-group
+		= f.label :name
+		= f.text_field :name, class: 'form-control'
+	.form-group
+		= f.label :email
+		= f.text_field :email, class: 'form-control'
+	.form-check
+		= f.label :name, class: 'form-check-label' do
+			= f.check_box :admin, class: 'form-check-input'
+			| administrator privileges
+	.form-group
+		= f.label :password
+		= f.password_field :password, class: 'form-control'
+	.form-group
+		= f.label :password_confirmaion
+		= f.password_field :password_confirmaion, class: 'form-control'
+	= f.submit nil, class: 'btn btn-primary'
