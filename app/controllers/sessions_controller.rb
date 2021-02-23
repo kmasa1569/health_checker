@@ -4,18 +4,20 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: session_params[:email])
-
     if user&.authenticate(session_params[:password])
       session[:user_id] = user.id
-      # redirect_to root_url, notice: 'ログインしました。'
+      log_in user
+      #Sessionsヘルパーのrememberメソッド
+      remember user
+      redirect_to admin_users_url, notice: 'ログインしました。'
     else
+      flash.now[:alert] = 'メールアドレス、もしくはパスワードが間違っています。'
       render :new
-      # flash.now[:dangers] = 'メールアドレス、もしくはパスワードが間違っています。'
     end
   end
 
   def destroy
-    reset_session
+    log_out
     redirect_to login_path, notice: 'ログアウトしました。'
   end
 
