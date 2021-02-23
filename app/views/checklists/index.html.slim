@@ -1,3 +1,27 @@
 h1 チェックリスト
 
-= link_to '今日の値を入力', new_checklist_path, class: 'btn btn-primary'
+= link_to '本日の値を入力', new_checklist_path, class: 'btn btn-primary'
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= Checklist.human_attribute_name(:date)
+      th= Checklist.human_attribute_name(:bt)
+      th= Checklist.human_attribute_name(:hr)
+      th= Checklist.human_attribute_name(:sbp)
+      th= Checklist.human_attribute_name(:dbp)
+      th= Checklist.human_attribute_name(:wt)
+      th
+      th
+  tbody
+    - @checklists.each do |checklist|
+      tr
+        td= link_to checklist.date, checklist
+        td= checklist.bt
+        td= checklist.hr
+        td= checklist.sbp
+        td= checklist.dbp
+        td= checklist.wt
+        td= link_to 'edit', edit_checklist_path(checklist), class: 'btn btn-primary mr-3'
+        / td= link_to 'delete', [:date, checklist], method: :delete, data: { confirm: "Delete 「#{checklist.name}」?" }, class: 'btn btn-danger'

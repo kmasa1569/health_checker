@@ -1,2 +1,29 @@
-h1 Checklists#show
-p Find me in app/views/checklists/show.html.slim
+h1 #{@checklist.date}
+
+.nav.justify-content-end
+  = link_to '戻る', checklists_path, class: 'nav-link'
+
+table.table.table-hover
+  tbody
+    tr
+      th= Checklist.human_attribute_name(:bt)
+      td= @checklist.bt
+    tr
+      th= Checklist.human_attribute_name(:hr)
+      td= @checklist.hr
+    tr
+      th= Checklist.human_attribute_name(:bp)
+      td= @checklist.sbp
+      td= @checklist.dbp
+    tr
+      th= Checklist.human_attribute_name(:wt)
+      td= @checklist.wt
+    / tr
+    /   th= Checklist.human_attribute_name(:created_at)
+    /   td= @checklist.created_at
+    / tr
+    /   th= Checklist.human_attribute_name(:updated_at)
+    /   td= @checklist.updated_at
+
+/ = link_to 'edit', edit_admin_user_path(@checklist), class: 'btn btn-primary mr-3'
+/ = link_to 'delete', [:admin, @checklist], method: :delete, data: { confirm: "Delete 「#{@checklist.name}」?"}, class: 'btn btn-danger'

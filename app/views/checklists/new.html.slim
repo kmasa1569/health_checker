@@ -1,4 +1,4 @@
-h1 今日の値を入力
+h1 本日の値を入力
 
 .nav.justify-content-end
   = link_to '一覧に戻る', checklists_path, class: 'nav-link'
@@ -22,7 +22,7 @@ h1 今日の値を入力
       = f.number_field :dbp, in: 20..150, class: 'form-control'
     .form-group
       = f.label :wt, class: 'col-auto'
-      = f.number_field :wt, in: 20..180, class: 'form-control'
+      = f.number_field :wt, in: 20..180, step: "0.1", class: 'form-control'
       p kg
 
   = f.submit nil, class: "btn btn-primary"
