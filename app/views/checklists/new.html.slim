@@ -1,0 +1,28 @@
+h1 今日の値を入力
+
+.nav.justify-content-end
+  = link_to '一覧に戻る', checklists_path, class: 'nav-link'
+
+= form_with model: @checklist, local: true do |f|
+  .form-group
+    = f.label :date, class: 'control-label'
+    = f.date_field :date, class: 'form-control'
+  .form-inline
+    .form-group
+      = f.label :bt, class: 'col-auto'
+      = f.number_field :bt, in: 33.0..43.0, step: "0.1", class: 'form-control'
+    .form-group
+      = f.label :hr, class: 'col-auto'
+      = f.number_field :hr, in: 20..180, class: 'form-control'
+    .form-group
+      = f.label :bp, class: 'col-auto'
+      = f.number_field :sbp, in: 40..250, class: 'form-control'
+      p
+        | /
+      = f.number_field :dbp, in: 20..150, class: 'form-control'
+    .form-group
+      = f.label :wt, class: 'col-auto'
+      = f.number_field :wt, in: 20..180, class: 'form-control'
+      p kg
+
+  = f.submit nil, class: "btn btn-primary"

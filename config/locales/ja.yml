@@ -7,6 +7,17 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    models:
+      checklist: チェックリスト
+    attributes:
+      checklist:
+        date: 日付
+        bt: 体温
+        hr: 心拍数
+        bp: 血圧
+        sbp: 収縮期血圧
+        dbp: 拡張期血圧
+        wt: 体重
   date:
     abbr_day_names:
     - 日
