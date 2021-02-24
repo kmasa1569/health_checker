@@ -22,11 +22,24 @@ class ChecklistsController < ApplicationController
   end
 
   def edit
+    @checklist = Checklist.find(params[:id])
+  end
+
+  def update
+    checklist = Checklist.find(params[:id])
+    checklist.update!(checklist_params)
+    redirect_to checklists_url, notice: "#{checklist.date}を更新しました。"
+  end
+
+  def destroy
+    checklist = Checklist.find(params[:id])
+    checklist.destroy
+    redirect_to checklists_url, notice: "#{checklist.date}を削除しました"
   end
 
   private
-   def checklist_params
-     params.require(:checklist).permit(:date, :bt, :hr, :sbp, :dbp, :wt)
-   end
-   
+    def checklist_params
+      params.require(:checklist).permit(:date, :bt, :hr, :sbp, :dbp, :wt)
+    end
+
 end

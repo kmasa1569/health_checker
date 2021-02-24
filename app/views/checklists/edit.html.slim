@@ -1,2 +1,6 @@
-h1 Checklists#edit
-p Find me in app/views/checklists/edit.html.slim
+h1 #{@checklist.date}の編集
+
+.nav.justify-content-end
+  = link_to '一覧に戻る', checklists_path, class: 'nav-link'
+
+=render partial: 'form', locals: { checklist: @checklist }
