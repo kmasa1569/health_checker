@@ -18,8 +18,8 @@ html
         - else
           li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
     .container
-      - if flash.notice.present?
-        .alert.alert-success= flash.notice
-      - if flash.alert.present?
-        .alert.alert-danger= flash.notice
+      - flash.each do |key, value|
+        - key = "info" if key == "notice"
+        - key = "danger"  if key == "alert"
+        = content_tag :div, value, class: "alert alert-#{key}"
       = yield

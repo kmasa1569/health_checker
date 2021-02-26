@@ -18,9 +18,9 @@ table.table.table-hover
     tr
       th= Checklist.human_attribute_name(:wt)
       td= @checklist.wt
-    / tr
-    /   th= Checklist.human_attribute_name(:created_at)
-    /   td= @checklist.created_at
+    tr
+      th= Checklist.human_attribute_name(:memo)
+      td= @checklist.memo
     / tr
     /   th= Checklist.human_attribute_name(:updated_at)
     /   td= @checklist.updated_at
