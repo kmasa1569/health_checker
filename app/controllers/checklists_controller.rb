@@ -1,10 +1,10 @@
 class ChecklistsController < ApplicationController
   def index
-    @checklists = Checklist.all
+    @checklists = current_user.checklists
   end
 
   def show
-    @checklist = Checklist.find(params[:id])
+    @checklist = current_user.checklists.find(params[:id])
   end
 
   def new
@@ -12,7 +12,7 @@ class ChecklistsController < ApplicationController
   end
 
   def create
-    @checklist = Checklist.new(checklist_params)
+    @checklist = current_user.checklists.new(checklist_params)
     if @checklist.save
       redirect_to checklists_url, notice: '本日の値を入力しました。'
     else
@@ -22,17 +22,17 @@ class ChecklistsController < ApplicationController
   end
 
   def edit
-    @checklist = Checklist.find(params[:id])
+    @checklist = current_user.checklists.find(params[:id])
   end
 
   def update
-    checklist = Checklist.find(params[:id])
+    checklist = current_user.checklists.find(params[:id])
     checklist.update!(checklist_params)
     redirect_to checklists_url, notice: "#{checklist.date}を更新しました。"
   end
 
   def destroy
-    checklist = Checklist.find(params[:id])
+    checklist = current_user.checklists.find(params[:id])
     checklist.destroy
     redirect_to checklists_url, notice: "#{checklist.date}を削除しました"
   end

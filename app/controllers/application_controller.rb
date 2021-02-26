@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user
+  before_action :login_required
   include SessionsHelper
 
   private
@@ -13,6 +14,10 @@ class ApplicationController < ActionController::Base
           @current_user = user
         end
       end
+    end
+
+    def login_required
+      redirect_to login_url unless current_user
     end
 
     # ユーザーがログインしていればtrue、その他ならfalseを返す

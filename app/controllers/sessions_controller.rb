@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_action :login_required
   def new
   end
 
@@ -8,8 +9,7 @@ class SessionsController < ApplicationController
       log_in user
       #Sessionsヘルパーのrememberメソッド
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      # ↓のurlはchecklistと結び付けたら変更する
-      redirect_to admin_users_url, notice: 'ログインしました。'
+      redirect_to checklists_url, notice: 'ログインしました。'
     else
       flash.now[:alert] = 'メールアドレス、もしくはパスワードが間違っています。'
       render :new

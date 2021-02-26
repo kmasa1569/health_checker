@@ -6,4 +6,6 @@ class Checklist < ApplicationRecord
     validates :sbp
     validates :dbp
   end
+
+  belongs_to :user
 end
