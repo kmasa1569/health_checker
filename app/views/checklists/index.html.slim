@@ -6,7 +6,7 @@ h1 チェックリスト
 table.table.table-striped
   thead.thead-default
     tr
-      th= sort_link(Checklist.human_attribute_name(:date), default_order: :asc)
+      th= Checklist.human_attribute_name(:date)
       th= Checklist.human_attribute_name(:bt)
       th= Checklist.human_attribute_name(:hr)
       th= Checklist.human_attribute_name(:bp)

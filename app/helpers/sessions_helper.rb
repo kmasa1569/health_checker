@@ -6,10 +6,10 @@ module SessionsHelper
 
   # ユーザーのセッションを永続的にする
   def remember(user)
-    user.remember
+    user.remember #Userモデルで定義したremember。トークンとユーザーを紐付け、記憶ダイジェストをDB保存
     # 署名付きcookie,permanentは期限を20年にする
-    cookies.permanent.signed[:user_id] = user.id
-    cookies.permanent[:remember_token] = user.remember_token
+    cookies.permanent.signed[:user_id] = user.id #ユーザーID暗号化しcookie保存
+    cookies.permanent[:remember_token] = user.remember_token #記憶トークンをcookie保存
   end
 
   # ユーザーのログイン情報を破棄する
@@ -20,8 +20,8 @@ module SessionsHelper
   end
 
   def log_out
-    forget.current_user
-    reset_session
+    forget(current_user)
+    session.delete(:user_id)
     @current_user = nil
   end
 

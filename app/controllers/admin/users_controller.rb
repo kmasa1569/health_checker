@@ -8,7 +8,7 @@ class Admin::UsersController < ApplicationController
     if @user.save
       redirect_to admin_users_url, notice: "#{@user.name} successfully created"
     else
-      flash[:error] = "Something went wrong"
+      flash.now[:alert] = "Something went wrong"
       render :new
     end
   end

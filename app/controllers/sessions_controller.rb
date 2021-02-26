@@ -5,10 +5,10 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: session_params[:email])
     if user&.authenticate(session_params[:password])
-      session[:user_id] = user.id
       log_in user
       #Sessionsヘルパーのrememberメソッド
-      remember user
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+      # ↓のurlはchecklistと結び付けたら変更する
       redirect_to admin_users_url, notice: 'ログインしました。'
     else
       flash.now[:alert] = 'メールアドレス、もしくはパスワードが間違っています。'
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out
+    log_out if logged_in?
     redirect_to login_path, notice: 'ログアウトしました。'
   end
 

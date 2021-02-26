@@ -14,4 +14,9 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+
+    # ユーザーがログインしていればtrue、その他ならfalseを返す
+    def logged_in?
+      !current_user.nil?
+    end
 end
