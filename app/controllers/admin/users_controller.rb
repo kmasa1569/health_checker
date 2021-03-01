@@ -15,7 +15,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @q = User.ransack(params[:q])
+    @users = @q.result
   end
 
   def show
@@ -50,6 +51,5 @@ class Admin::UsersController < ApplicationController
     def require_admin
       redirect_to login_url unless current_user.admin?
     end
-    
 
 end

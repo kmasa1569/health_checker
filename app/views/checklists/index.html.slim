@@ -6,7 +6,7 @@ h1 チェックリスト
 table.table.table-striped
   thead.thead-default
     tr
-      th= Checklist.human_attribute_name(:date)
+      th= sort_link(@q, :date, default_order: :asc)
       th= Checklist.human_attribute_name(:bt)
       th= Checklist.human_attribute_name(:hr)
       th= Checklist.human_attribute_name(:bp)
@@ -25,3 +25,11 @@ table.table.table-striped
         td= checklist.wt
         td= link_to '編集', edit_checklist_path(checklist), class: 'btn btn-primary mr-3'
         td= link_to '削除', checklist, method: :delete, data: { confirm: "「#{checklist.date}」を削除しますか?" }, class: 'btn btn-danger'
+
+
+/ = search_form_for @q, url: checklists_path, class: 'mb-5' do |f|
+/   .form-group.row
+/     = f.label :date_cont, '日付', class: 'col-sm-2 col-form-label'
+/     .col-sm-8
+/       = f.search_field :date_cont, class: 'form-control'
+/     = f.submit class: 'btn btn-outline-primary'

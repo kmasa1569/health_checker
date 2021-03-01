@@ -1,11 +1,22 @@
 h1 All Patients
-
 = link_to 'Add Patient', new_admin_user_path, class: 'btn btn-primary'
+
+= search_form_for @q, url: admin_users_path, class: 'mb-5' do |f|
+  / .form-group.row
+  /   = f.label :id_cont, 'ID', class: 'col-sm-2 col-form-label'
+  /   .col-sm-8
+  /     = f.search_field :id_cont, class: 'form-control'
+  .form-group.row
+    = f.label :name_cont, 'Name', class: 'col-sm-2 col-form-label'
+    .col-sm-8
+      = f.search_field :name_cont, class: 'form-control'
+    = f.submit class: 'btn btn-outline-primary'
 
 .mb-3
 table.table.table-hover
   thead.thead-default
     tr
+      th= User.human_attribute_name(:id)
       th= User.human_attribute_name(:name)
       th= User.human_attribute_name(:email)
       th= User.human_attribute_name(:admin)
@@ -15,6 +26,7 @@ table.table.table-hover
   tbody
     - @users.each do |user|
       tr
+        td= user.id
         td= link_to user.name, [:admin, user]
         td= user.email
         td= user.admin? ? '✔️' : ' '
