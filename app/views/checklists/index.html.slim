@@ -26,7 +26,7 @@ table.table.table-striped
         td= link_to '編集', edit_checklist_path(checklist), class: 'btn btn-primary mr-3'
         td= link_to '削除', checklist, method: :delete, data: { confirm: "「#{checklist.date}」を削除しますか?" }, class: 'btn btn-danger'
 
-
+= will_paginate(@checklist, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'pagination justify-content-center')
 / = search_form_for @q, url: checklists_path, class: 'mb-5' do |f|
 /   .form-group.row
 /     = f.label :date_cont, '日付', class: 'col-sm-2 col-form-label'
