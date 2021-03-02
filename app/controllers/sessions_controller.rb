@@ -9,7 +9,11 @@ class SessionsController < ApplicationController
       log_in user
       #Sessionsヘルパーのrememberメソッド
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_to checklists_url, notice: 'ログインしました。'
+      - if current_user.admin?
+          redirect_to admin_users_url, notice: 'ログインしました。'
+        else
+          redirect_to checklists_url, notice: 'ログインしました。'
+        end
     else
       flash.now[:alert] = 'メールアドレス、もしくはパスワードが間違っています。'
       render :new

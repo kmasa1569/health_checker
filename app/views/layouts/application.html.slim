@@ -13,10 +13,11 @@ html
       .navbar-brand Health Checker
       ul.navbar-nav.ml-auto
         - if current_user
-          li.nav-item= link_to 'チェックリスト', checklists_path, class: 'nav-link'
           - if current_user.admin?
-            li.nav-item= link_to 'Patients一覧', admin_users_path, class: 'nav-link'
-          li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
+              li.nav-item= link_to 'Patients一覧', admin_users_path, class: 'nav-link'
+          - else
+              li.nav-item= link_to 'チェックリスト', checklists_path, class: 'nav-link'
+          li.nav-item= link_to 'ログアウト', root_path, method: :delete, class: 'nav-link'
         - else
           li.nav-item= link_to 'ログイン', root_path, class: 'nav-link'
     .container
