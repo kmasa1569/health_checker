@@ -2,6 +2,8 @@ h1 チェックリスト
 
 = link_to '本日の値を入力', new_checklist_path, class: 'btn btn-primary'
 
+= line_chart Checklist.group_by_day(:date).sum(:sbp)
+
 .mb-3
 table.table.table-striped
   thead.thead-default
