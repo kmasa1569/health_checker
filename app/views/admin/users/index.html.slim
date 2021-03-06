@@ -28,6 +28,6 @@ table.table.table-hover
         td= user.id
         td= link_to user.name, [:admin, user]
         td= user.email
-        td= link_to 'checklist', checklists_path(user_id) class: 'btn btn-primary mr-3'
+        / td= link_to 'checklist', checklists_path(@checklist.user_id), class: 'btn btn-primary mr-3'
         td= link_to 'edit', edit_admin_user_path(user), class: 'btn btn-primary mr-3'
         td= link_to 'delete', [:admin, user], method: :delete, data: { confirm: "Delete 「#{user.name}」?" }, class: 'btn btn-danger'
