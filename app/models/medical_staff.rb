@@ -1,0 +1,2 @@
+class MedicalStaff < User
+end

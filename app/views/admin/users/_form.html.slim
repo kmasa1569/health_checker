@@ -12,8 +12,10 @@
 		= f.text_field :email, class: 'form-control'
 	.form-check
 		= f.label :name, class: 'form-check-label' do
-			= f.check_box :admin, class: 'form-check-input'
+			= f.check_box :admin, medical_staff: 'MedicalStaff', class: 'form-check-input'
 			| administrator privileges
+			.form-select
+				=f.select :profession, {'Dr': 1, 'Ns': 2}, include_blank: 'profession', class: 'form-control'
 	.form-group
 		= f.label :password
 		= f.password_field :password, class: 'form-control'

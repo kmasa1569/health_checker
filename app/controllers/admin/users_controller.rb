@@ -15,8 +15,13 @@ class Admin::UsersController < ApplicationController
   end
 
   def index
-    @q = User.ransack(params[:q])
-    @users = @q.result
+    @q = MedicalStaff.ransack(params[:q])
+    @medical_staffs = @q.result
+  end
+
+  def index_p
+    @q = Patient.ransack(params[:q])
+    @patients = @q.result
   end
 
   def show
@@ -45,9 +50,10 @@ class Admin::UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :email, :admin, :password, :password_confirmations)
+      params.require(:user).permit(:name, :email, :admin, :password, :password_confirmations, :type)
     end
 
+    # admin user以外禁
     def require_admin
       redirect_to root_url unless current_user.admin?
     end

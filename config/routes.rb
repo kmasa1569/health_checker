@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   delete '/', to: 'sessions#destroy'
   namespace :admin do
     resources :users
+    get '/patients', to: 'users#index_p'
   end
 end

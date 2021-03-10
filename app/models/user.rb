@@ -1,9 +1,4 @@
-class User < ActiveRecord::Base
-  enum type: {
-    medical_staff: "Medical_Staff",
-    patient: "Patient"
-  }
-
+class User < ApplicationRecord
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { maximum: 30 }
@@ -45,10 +40,4 @@ class User < ActiveRecord::Base
     update_attribute(:remember_digest, nil)
   end
 
-end
-
-class Patient < User
-end
-
-class Medical_Staff < User
 end
