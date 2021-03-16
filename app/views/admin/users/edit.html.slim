@@ -1,6 +1,29 @@
-h1 Patient Edit
+h1 = @user.type + " Edit"
 
-.nav.justify-content-end
-	= link_to "All Patients", admin_users_path, class: 'nav-link'
+- if @user.errors.present?
+  ul#error_explanation
+    - user.errors.full_messages.each do |message|
+      li= message
 
-= render "form", user: @user
+= form_with model: [:admin, @user], url: admin_user_path, local: true do |f|
+	.form-group
+		= f.label :name
+		= f.text_field :name, class: 'form-control'
+	.form-group
+		= f.label :email
+		= f.text_field :email, class: 'form-control'
+	.form-group
+		= f.select :type, [['Patient', 'Patient'], ['MedicalStaff', 'MedicalStaff']]
+		/ ajaxで実装が必要 https://qiita.com/nsy_13/items/5fd702ba43bcfcaa99ed
+		/ 	= f.select :profession, [['Dr', 'Dr']['Ns', 'Ns']['PT', 'PT']['OT', 'OT']], if select(type: "MedicalStaff")
+	.form-check
+		= f.label :name, class: 'form-check-label' do
+			= f.check_box :admin, medical_staff: 'MedicalStaff', class: 'form-check-input'
+			| administrator privileges
+	.form-group
+		= f.label :password
+		= f.password_field :password, class: 'form-control'
+	.form-group
+		= f.label :password_confirmaion
+		= f.password_field :password_confirmaion, class: 'form-control'
+	= f.submit nil, class: 'btn btn-primary'

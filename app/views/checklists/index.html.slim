@@ -11,8 +11,8 @@ table.table.table-striped
       th= sort_link(@q, :date, default_order: :asc)
       th= Checklist.human_attribute_name(:bt)
       th= Checklist.human_attribute_name(:hr)
-      th= Checklist.human_attribute_name(:bp)
-      th
+      / th= Checklist.human_attribute_name(:bp)
+      th colspan='2' = Checklist.human_attribute_name(:bp)
       th= Checklist.human_attribute_name(:wt)
       th
       th

@@ -7,7 +7,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to admin_users_url, notice: "#{@user.name} successfully created"
+      redirect_to admin_patients_path, notice: "#{@user.name} successfully created"
     else
       flash.now[:alert] = "Something went wrong"
       render :new
@@ -35,7 +35,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to admin_users_url, notice: "#{@user.name} successfully updated"
+      redirect_to admin_patients_path, notice: "#{@user.name} successfully updated"
     else
       flash[:error] = "Something went wrong"
       render :edit
@@ -57,5 +57,7 @@ class Admin::UsersController < ApplicationController
     def require_admin
       redirect_to root_url unless current_user.admin?
     end
+
+
 
 end
