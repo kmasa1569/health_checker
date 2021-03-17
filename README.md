@@ -1,24 +1,32 @@
-# README
+# Health Checker
+患者と医療者をつなぐ健康管理アプリ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<!-- ## 背景とターゲット
+看護師として循環器4年、消化器2年勤める中で、
+・頻脈、高血圧を放置して心不全が悪化し入院せざるを得なかった
+・腹水や胸水が溜まっている＝体重が増えているにも関わらず何も処置せずにすぐに入院となった
+などなど、30-60代の若い患者様でも自己管理ができておらず、症状悪化し入院してくる人が多かったです。
+もっと早く分かっていれば、受診を促して薬の追加や変更が可能であった例はたくさんあります。
+今は予防医療の時代。健常者も日々健康チェックもしていく必要がある。
 
-Things you may want to cover:
+ターゲット
+30-60代の男女、血圧•体重管理が必要な患者様
+日常の健康状況をアプリに残しておきたい方 -->
 
-* Ruby version
+## URL
 
-* System dependencies
+## 開発環境
+・Ruby 2.7.2
+・Ruby on Rails
+・Postgresql
+・VSCode (Visual Studio Code)
+## 機能一覧
+・ユーザー登録、ログイン機能
+・セッション機能
+・投稿機能
+・ページネーション機能(kaminari)
+・検索機能(ransack)
+## 動作環境
 
-* Configuration
+## 使用方法
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
