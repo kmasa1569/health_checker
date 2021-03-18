@@ -2,7 +2,7 @@ h1 チェックリスト
 
 = link_to '本日の値を入力', new_checklist_path, class: 'btn btn-primary'
 
-= line_chart Checklist.group_by_day(:date).average(:bt)
+/ = line_chart @checklists.group_by_day_of_month(:date, series: false).average(:bt), curve: faulse
 
 .mb-3
 table.table.table-striped

@@ -21,9 +21,6 @@ table.table.table-hover
     tr
       th= Checklist.human_attribute_name(:memo)
       td= @checklist.memo
-    / tr
-    /   th= Checklist.human_attribute_name(:updated_at)
-    /   td= @checklist.updated_at
 
 = link_to '編集', edit_checklist_path, class: 'btn btn-primary mr-3'
 = link_to '削除', @checklist, method: :delete, data: { confirm: "「#{@checklist.date}を削除しますか」?" }, class: 'btn btn-danger'

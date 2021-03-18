@@ -1,5 +1,5 @@
 class ChecklistsController < ApplicationController
-  # before_action :set_checklist, only: [:show, :edit, :update, :destroy]
+  before_action :set_checklist, only: [:show, :edit, :update, :destroy]
   def index
     @q = current_user.checklists.ransack(params[:q])
     @checklists = @q.result.order(date: :desc).paginate(page: params[:page], per_page: 14)
@@ -32,12 +32,12 @@ class ChecklistsController < ApplicationController
 
   def update
     @checklist.update!(checklist_params)
-    redirect_to checklists_url, notice: "#{checklist.date}を更新しました。"
+    redirect_to checklists_url, notice: "#{@checklist.date}を更新しました。"
   end
 
   def destroy
     @checklist.destroy
-    redirect_to checklists_url, notice: "#{checklist.date}を削除しました"
+    redirect_to checklists_url, notice: "#{@checklist.date}を削除しました"
   end
 
   private
@@ -45,8 +45,8 @@ class ChecklistsController < ApplicationController
       params.require(:checklist).permit(:date, :bt, :hr, :sbp, :dbp, :wt, :memo)
     end
 
-    # def set_checklist
-    #   @checklist = current_user.checklists.find(params[:id])
-    # end
+    def set_checklist
+      @checklist = current_user.checklists.find(params[:id])
+    end
 
 end
