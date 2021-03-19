@@ -23,6 +23,7 @@ ja:
         dbp: 拡張期血圧
         wt: 体重
         memo: メモ
+        age: 年齢
   date:
     abbr_day_names:
     - 日

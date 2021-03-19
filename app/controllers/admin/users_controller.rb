@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :require_admin
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   def new
     @user = User.new
   end
@@ -7,7 +8,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to admin_patients_path, notice: "#{@user.name} successfully created"
+      redirect_to admin_users_path, notice: "#{@user.name} successfully created"
     else
       flash.now[:alert] = "Something went wrong"
       render :new
@@ -15,25 +16,17 @@ class Admin::UsersController < ApplicationController
   end
 
   def index
-    @q = MedicalStaff.ransack(params[:q])
+    @q = User.where(admin: true).ransack(params[:q])
     @medical_staffs = @q.result
   end
 
-  def index_p
-    @q = Patient.ransack(params[:q])
-    @patients = @q.result
-  end
-
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to admin_patients_path, notice: "#{@user.name} successfully updated"
     else
@@ -43,14 +36,17 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     redirect_to admin_users_path, notice: "「#{@user.name}」is delete."
   end
 
   private
     def user_params
-      params.require(:user).permit(:name, :email, :admin, :password, :password_confirmations, :type)
+      params.require(:user).permit(:name, :email, :admin, :password, :password_confirmations, :profession)
+    end
+
+    def set_user
+      @user = User.find(params[:id])
     end
 
     # admin user以外禁

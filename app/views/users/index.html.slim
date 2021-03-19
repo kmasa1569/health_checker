@@ -1,7 +1,9 @@
-h1 All Patients
-= link_to 'Add User', new_admin_user_path, class: 'btn btn-primary'
+/ 見れるのはadmin_userのみ
 
-= search_form_for @q, url: admin_users_path, class: 'mb-5' do |f|
+h1 All Patients
+= link_to 'Add Users', new_admin_user_path, class: 'btn btn-primary'
+
+= search_form_for @q, url: users_path, class: 'mb-5' do |f|
   .form-group.row
     = f.label :id_cont, 'ID', class: 'col-sm-2 col-form-label'
     .col-sm-8
@@ -18,16 +20,18 @@ table.table.table-hover
     tr
       th= User.human_attribute_name(:id)
       th= User.human_attribute_name(:name)
+      th= User.human_attribute_name(:age)
       th= User.human_attribute_name(:email)
       th
       th
       th
   tbody
-    - @patients.each do |patient|
+    - @users.each do |user|
       tr
-        td= patient.id
-        td= patient.name
-        td= patient.email
-        td= link_to 'checklist'
-        td= link_to 'edit', edit_admin_user_path(patient), class: 'btn btn-primary mr-3'
-        td= link_to 'delete', method: :delete, data: { confirm: "Delete 「#{patient.name}」?" }, class: 'btn btn-danger'
+        td= user.id
+        td= user.name
+        td= user.age
+        td= user.email
+        td= link_to 'checklist', class: 'btn btn-light'
+        td= link_to 'edit', edit_user_path(user), class: 'btn btn-primary mr-3'
+        td= link_to 'delete', user, method: :delete, data: { confirm: "Delete 「#{user.name}」?" }, class: 'btn btn-danger'
