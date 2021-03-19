@@ -10,13 +10,11 @@
 	.form-group
 		= f.label :email
 		= f.text_field :email, class: 'form-control'
-	.form-group
-		= f.select :type, [['Patient', 'Patient'], ['MedicalStaff', 'MedicalStaff']]
-		/ ajaxで実装が必要 https://qiita.com/nsy_13/items/5fd702ba43bcfcaa99ed
-		/ 	= f.select :profession, [['Dr', 'Dr']['Ns', 'Ns']['PT', 'PT']['OT', 'OT']], if select(type: "MedicalStaff")
+	/ .form-group
+	/ 	= f.select :profession, [['Dr', 1]['Ns', 2]['PT', 3]['OT', 4]]
 	.form-check
 		= f.label :name, class: 'form-check-label' do
-			= f.check_box :admin, medical_staff: 'MedicalStaff', class: 'form-check-input'
+			= f.check_box :admin, admin_user: 'MedicalStaff', class: 'form-check-input'
 			| administrator privileges
 	.form-group
 		= f.label :password

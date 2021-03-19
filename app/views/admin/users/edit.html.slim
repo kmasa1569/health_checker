@@ -18,7 +18,7 @@ h1 MedicalStaff Edit
 		/ 	= f.select :profession, [['Dr', 'Dr']['Ns', 'Ns']['PT', 'PT']['OT', 'OT']], if select(type: "MedicalStaff")
 	.form-check
 		= f.label :name, class: 'form-check-label' do
-			= f.check_box :admin, medical_staff: 'MedicalStaff', class: 'form-check-input'
+			= f.check_box :admin, admin_user: 'MedicalStaff', class: 'form-check-input'
 			| administrator privileges
 	.form-group
 		= f.label :password

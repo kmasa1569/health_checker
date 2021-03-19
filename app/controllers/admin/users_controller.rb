@@ -17,7 +17,7 @@ class Admin::UsersController < ApplicationController
 
   def index
     @q = User.where(admin: true).ransack(params[:q])
-    @medical_staffs = @q.result
+    @admin_users = @q.result
   end
 
   def show

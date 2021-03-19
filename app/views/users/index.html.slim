@@ -1,7 +1,7 @@
 / 見れるのはadmin_userのみ
 
 h1 All Patients
-= link_to 'Add Users', new_admin_user_path, class: 'btn btn-primary'
+= link_to 'Add User', new_admin_user_path, class: 'btn btn-primary'
 
 = search_form_for @q, url: users_path, class: 'mb-5' do |f|
   .form-group.row
@@ -29,7 +29,7 @@ table.table.table-hover
     - @users.each do |user|
       tr
         td= user.id
-        td= user.name
+        td= link_to user.name, user_path(user)
         td= user.age
         td= user.email
         td= link_to 'checklist', class: 'btn btn-light'

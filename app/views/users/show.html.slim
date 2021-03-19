@@ -1,2 +1,22 @@
-h1 Users#show
-p Find me in app/views/users/show.html.slim
+h1 #{@user.name}
+
+table.table.table-hover
+  tbody
+    tr
+      th= User.human_attribute_name(:id)
+      td= @user.id
+    tr
+      th= User.human_attribute_name(:age)
+      td= @user.age
+    tr
+      th= User.human_attribute_name(:email)
+      td= @user.email
+    tr
+      th= User.human_attribute_name(:created_at)
+      td= @user.created_at
+    tr
+      th= User.human_attribute_name(:updated_at)
+      td= @user.updated_at
+
+= link_to 'edit', edit_user_path(@user), class: 'btn btn-primary mr-3'
+= link_to 'delete', @user, method: :delete, data: { confirm: "Delete 「#{@user.name}」?"}, class: 'btn btn-danger'

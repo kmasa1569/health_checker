@@ -23,11 +23,11 @@ table.table.table-hover
       th
       th
   tbody
-    - @medical_staffs.each do |medical_staff|
+    - @admin_users.each do |admin_user|
       tr
-        td= medical_staff.id
-        td= medical_staff.name
-        td= medical_staff.email
-        td= medical_staff.profession
-        td= link_to 'edit', edit_admin_user_path(medical_staff), class: 'btn btn-primary mr-3'
-        td= link_to 'delete', method: :delete, data: { confirm: "Delete 「#{medical_staff.name}」?" }, class: 'btn btn-danger'
+        td= admin_user.id
+        td= link_to admin_user.name, admin_user_path(admin_user)
+        td= admin_user.email
+        td= admin_user.profession
+        td= link_to 'edit', edit_admin_user_path(admin_user), class: 'btn btn-primary mr-3'
+        td= link_to 'delete', @user , method: :delete, data: { confirm: "Delete 「#{admin_user.name}」?" }, class: 'btn btn-danger'
