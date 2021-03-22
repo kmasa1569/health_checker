@@ -1,2 +1,0 @@
-class MedicalStaff < User
-end

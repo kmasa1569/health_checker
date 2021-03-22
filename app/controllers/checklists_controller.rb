@@ -4,10 +4,10 @@ class ChecklistsController < ApplicationController
     @q = current_user.checklists.ransack(params[:q])
     @checklists = @q.result.order(date: :desc).paginate(page: params[:page], per_page: 14)
 
-    respond_to do |format|
-      format.html
-      format.csv { send_data @checklists.generate_csv, filename: "checklists-#{Time.zone.now.strftime('%Y%m%d%S')}.csv" }
-    end
+    # respond_to do |format|
+    #   format.html
+    #   format.csv { send_data @checklists.generate_csv, filename: "checklists-#{Time.zone.now.strftime('%Y%m%d%S')}.csv" }
+    # end
   end
 
   def show

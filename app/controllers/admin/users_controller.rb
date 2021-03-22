@@ -28,7 +28,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to admin_patients_path, notice: "#{@user.name} successfully updated"
+      redirect_to admin_users_path, notice: "#{@user.name} successfully updated"
     else
       flash[:error] = "Something went wrong"
       render :edit

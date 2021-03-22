@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
   
-  has_many :checklists
+  has_many :checklists, dependent: :destroy
   
   # 記憶トークンをハッシュ化⇨記憶ダイジェスト
   def User.digest(string)

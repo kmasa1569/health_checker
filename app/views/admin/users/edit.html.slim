@@ -2,7 +2,7 @@ h1 MedicalStaff Edit
 
 - if @user.errors.present?
   ul#error_explanation
-    - user.errors.full_messages.each do |message|
+    - @user.errors.full_messages.each do |message|
       li= message
 
 = form_with model: [:admin, @user], url: admin_user_path, local: true do |f|

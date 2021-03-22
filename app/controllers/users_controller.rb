@@ -3,9 +3,11 @@ class UsersController < ApplicationController
   def index
     @q = User.where(admin: false).ransack(params[:q])
     @users = @q.result
+    # @checklists = @user.checklists
   end
 
   def show
+    # @checklists = @user.checklists
   end
 
   def edit
