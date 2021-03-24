@@ -30,7 +30,7 @@ class Admin::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to admin_users_path, notice: "#{@user.name} successfully updated"
     else
-      flash[:error] = "Something went wrong"
+      flash.now[:alert] = "Something went wrong"
       render :edit
     end
   end

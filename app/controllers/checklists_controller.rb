@@ -1,7 +1,8 @@
 class ChecklistsController < ApplicationController
   before_action :set_checklist, only: [:show, :edit, :update, :destroy]
   def index
-    @q = current_user.checklists.ransack(params[:q])
+    @user = User.find_by(id: checklists.user_id)
+    @q = @user.checklists.ransack(params[:q])
     @checklists = @q.result.order(date: :desc).paginate(page: params[:page], per_page: 14)
 
     # respond_to do |format|
