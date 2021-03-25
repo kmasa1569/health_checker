@@ -1,6 +1,6 @@
-h1 チェックリスト
+h1 #{@user.name} 様
 
-= link_to '本日の値を入力', new_checklist_path, class: 'btn btn-primary'
+= link_to '本日の値を入力', new_user_checklist_path, class: 'btn btn-primary'
 
 / = line_chart @checklists.group_by_day_of_month(:date, series: false).average(:bt), curve: faulse
 
@@ -19,18 +19,18 @@ table.table.table-striped
   tbody
     - @checklists.each do |checklist|
       tr
-        td= link_to checklist.date, checklist
+        td= link_to checklist.date, user_checklist_path(@user, checklist)
         td= checklist.bt
         td= checklist.hr
         td= checklist.sbp
         td= checklist.dbp
         td= checklist.wt
-        td= link_to '編集', edit_checklist_path(checklist), class: 'btn btn-primary mr-3'
-        td= link_to '削除', checklist, method: :delete, data: { confirm: "「#{checklist.date}」を削除しますか?" }, class: 'btn btn-danger'
+        td= link_to '編集', edit_user_checklist_path(@user, checklist), class: 'btn btn-primary mr-3'
+        td= link_to '削除', user_checklist_path(@user, checklist), method: :delete, data: { confirm: "「#{checklist.date}」を削除しますか?" }, class: 'btn btn-danger'
 
 = will_paginate(@checklist, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'pagination justify-content-center')
 
-= link_to 'エクスポート', checklists_path(format: :csv), class: 'btn btn-primary mb-3'
+/ = link_to 'エクスポート', checklists_path(format: :csv), class: 'btn btn-primary mb-3'
 / = search_form_for @q, url: checklists_path, class: 'mb-5' do |f|
 /   .form-group.row
 /     = f.label :date_cont, '日付', class: 'col-sm-2 col-form-label'
