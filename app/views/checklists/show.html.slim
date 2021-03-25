@@ -1,7 +1,7 @@
 h1 #{@checklist.date}
 
 .nav.justify-content-end
-  = link_to '戻る', checklists_path, class: 'nav-link'
+  = link_to '戻る', user_checklists_path, class: 'nav-link'
 
 table.table.table-hover
   tbody
@@ -22,5 +22,5 @@ table.table.table-hover
       th= Checklist.human_attribute_name(:memo)
       td= @checklist.memo
 
-= link_to '編集', edit_checklist_path, class: 'btn btn-primary mr-3'
-= link_to '削除', @checklist, method: :delete, data: { confirm: "「#{@checklist.date}を削除しますか」?" }, class: 'btn btn-danger'
+= link_to '編集', edit_user_checklist_path, class: 'btn btn-primary mr-3'
+= link_to '削除', user_checklist_path(@user, @checklist), method: :delete, data: { confirm: "「#{@checklist.date}を削除しますか」?" }, class: 'btn btn-danger'

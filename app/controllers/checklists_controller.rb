@@ -12,6 +12,8 @@ class ChecklistsController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:user_id])
+    @checklist = current_user.checklists.find(params[:id])
   end
 
   def new
@@ -51,7 +53,7 @@ class ChecklistsController < ApplicationController
 
   private
     def checklist_params
-      params.require(:checklist).permit(:date, :bt, :hr, :sbp, :dbp, :wt, :memo)
+      params.require(:checklist).permit(:date, :bt, :hr, :sbp, :dbp, :wt, :memo, :user_id)
     end
 
     def set_checklist
