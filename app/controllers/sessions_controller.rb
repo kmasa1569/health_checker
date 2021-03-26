@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       - if current_user.admin?
           redirect_to admin_users_url, notice: 'ログインしました。'
         else
-          redirect_to checklists_url, notice: 'ログインしました。'
+          redirect_to user_checklists_path(user), notice: 'ログインしました。'
         end
     else
       flash.now[:alert] = 'メールアドレス、もしくはパスワードが間違っています。'

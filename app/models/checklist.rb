@@ -13,7 +13,7 @@ class Checklist < ApplicationRecord
   end
 
   with_options presence: true do
-    validates :date, uniqueness: true
+    validates :date, uniqueness: { scope: :user_id }
     validates :bt
     validates :hr
     validates :sbp

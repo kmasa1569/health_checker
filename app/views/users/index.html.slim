@@ -32,6 +32,6 @@ table.table.table-hover
         td= link_to user.name, user_path(user)
         td= user.age
         td= user.email
-        td= link_to 'checklist', user_checklists_path, class: 'btn btn-light'
+        td= link_to 'checklist', user_checklists_path(user), class: 'btn btn-light'
         td= link_to 'edit', edit_user_path(user), class: 'btn btn-primary mr-3'
         td= link_to 'delete', user, method: :delete, data: { confirm: "Delete 「#{user.name}」?" }, class: 'btn btn-danger'
