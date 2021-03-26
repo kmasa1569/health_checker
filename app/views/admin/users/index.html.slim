@@ -3,9 +3,9 @@ h1 All Medical Staff
 
 = search_form_for @q, url: admin_users_path, class: 'mb-5' do |f|
   .form-group.row
-    = f.label :id_cont, 'ID', class: 'col-sm-2 col-form-label'
+    = f.label :id_eq, 'ID', class: 'col-sm-2 col-form-label'
     .col-sm-8
-      = f.search_field :id_cont, class: 'form-control'
+      = f.search_field :id_eq, class: 'form-control'
   .form-group.row
     = f.label :name_cont, 'Name', class: 'col-sm-2 col-form-label'
     .col-sm-8
