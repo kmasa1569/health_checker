@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to users_path, notice: "#{@user.name} successfully updated"
     else
-      flash[:error] = "Something went wrong"
+      flash.now[:alert] = "Something went wrong"
       render :edit
     end
   end
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :admin, :password, :password_confirmations, :age)
+    params.require(:user).permit(:name, :email, :admin, :password, :password_confirmations, :dob)
   end
 
   def set_user
