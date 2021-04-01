@@ -9,6 +9,9 @@ table.table.table-hover
       th= User.human_attribute_name(:dob)
       td= @user.dob
     tr
+      th= User.human_attribute_name(:sex)
+      td= @user.sex
+    tr
       th= User.human_attribute_name(:age)
       td= @user.age
     tr
@@ -21,5 +24,6 @@ table.table.table-hover
       th= User.human_attribute_name(:updated_at)
       td= @user.updated_at
 
+= link_to 'checklist', user_checklists_path(@user), class: 'btn btn-light mr-3'
 = link_to 'edit', edit_user_path(@user), class: 'btn btn-primary mr-3'
 = link_to 'delete', @user, method: :delete, data: { confirm: "Delete 「#{@user.name}」?"}, class: 'btn btn-danger'

@@ -12,6 +12,9 @@ table.table.table-hover
       th= User.human_attribute_name(:email)
       td= @user.email
     tr
+      th= User.human_attribute_name(:profession)
+      td= @user.profession
+    tr
       th= User.human_attribute_name(:created_at)
       td= @user.created_at
     tr

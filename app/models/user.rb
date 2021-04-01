@@ -48,4 +48,13 @@ class User < ApplicationRecord
     (d2 - d1) / 10000
   end
 
+  # professionカラムの定義
+  enum profession: {
+    Dr: 0, Ns: 1, PT: 2, OT: 3, ST: 4, 薬剤師: 5, 栄養士: 6, MSW: 7
+  }
+
+  # sexカラムの定義
+  enum sex: {
+    male: 0, female: 1
+  }
 end

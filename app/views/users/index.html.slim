@@ -20,6 +20,7 @@ table.table.table-hover
     tr
       th= User.human_attribute_name(:id)
       th= User.human_attribute_name(:name)
+      th= User.human_attribute_name(:sex)
       th= User.human_attribute_name(:age)
       th= User.human_attribute_name(:email)
       th
@@ -30,6 +31,7 @@ table.table.table-hover
       tr
         td= user.id
         td= link_to user.name, user_path(user)
+        td= user.sex
         td= user.age
         td= user.email
         td= link_to 'checklist', user_checklists_path(user), class: 'btn btn-light'
