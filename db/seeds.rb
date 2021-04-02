@@ -1,6 +1,6 @@
 User.create!(name: 'kanrisya', email: 'kanri@sya.com', password: 'foobar', password_confirmation: 'foobar',
-   admin: true, dob: '1992-05-03')
-User.create!(name: '患者A', email: 'kanja@ex.com', password: 'foobar', password_confirmation: 'foobar', dob: '1992-05-03')
+   admin: true, dob: '1992-05-03', sex: 'male')
+User.create!(name: '患者A', email: 'kanja@ex.com', password: 'foobar', password_confirmation: 'foobar', dob: '1992-05-03', sex:'male')
 
 50.times do |n|
   date = Faker::Date.between(from: '2021-01-01', to: '2021-08-01')
