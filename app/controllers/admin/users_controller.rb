@@ -7,8 +7,10 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      redirect_to admin_users_path, notice: "#{@user.name} successfully created"
+    if @user.save && @user.admin = true
+      redirect_to admin_users_path, notice: "「#{@user.name}」 successfully created"
+    elsif @user.save && @user.admin = false
+      redirect_to users_path, notice: "「#{@user.name}」 successfully created"
     else
       flash.now[:alert] = "Something went wrong"
       render :new
@@ -42,7 +44,7 @@ class Admin::UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:id,:name, :email, :admin, :password, :password_confirmations, :profession, :dob)
+      params.require(:user).permit(:id,:name, :email, :admin, :password, :password_confirmations, :profession, :dob, :sex)
     end
 
     def set_user

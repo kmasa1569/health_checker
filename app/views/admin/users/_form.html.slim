@@ -27,7 +27,7 @@
 			|  administrator privileges
 		br
 		= f.label :profession, class: 'form-check-label' do
-			= f.select :profession, options_for_select(User.professions), prompt: "Select Profession", class: 'form-control'
+			= f.select :profession, User.professions.keys, prompt: "Select Profession", class: 'form-control'
 	.form-group
 		= f.label :password
 		= f.password_field :password, class: 'form-control'
