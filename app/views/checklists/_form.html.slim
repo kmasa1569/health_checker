@@ -12,13 +12,12 @@
     .form-group
       = f.label :bp, class: 'col-auto'
       = f.number_field :sbp, in: 40..250, class: 'form-control'
-      p
-        | /
+      span ／
       = f.number_field :dbp, in: 20..150, class: 'form-control'
     .form-group
       = f.label :wt, class: 'col-auto'
       = f.number_field :wt, in: 20..180, step: "0.1", class: 'form-control'
-      p kg
+      span kg
   .form-group
       = f.label :memo, class: 'col-auto'
       = f.text_field :memo, class: 'form-control'
