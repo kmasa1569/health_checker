@@ -7,9 +7,9 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save && @user.admin = true
+    if @user.save && @user.admin == true
       redirect_to admin_users_path, notice: "「#{@user.name}」 successfully created"
-    elsif @user.save && @user.admin = false
+    elsif @user.save && @user.admin == false
       redirect_to users_path, notice: "「#{@user.name}」 successfully created"
     else
       flash.now[:alert] = "Something went wrong"

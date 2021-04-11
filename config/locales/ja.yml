@@ -13,6 +13,7 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       checklist: チェックリスト
+      user: ユーザー
     attributes:
       checklist:
         date: 日付
@@ -23,7 +24,21 @@ ja:
         dbp: 拡張期血圧
         wt: 体重
         memo: メモ
+    attributes:
+      user:
+        id: ID
+        name: 名前
         age: 年齢
+        dob: 生年月日
+        sex: 性別
+        profession: 職業
+  attributes:
+    created_at: 作成
+    updated_at: 更新
+    email: メールアドレス
+    password: パスワード
+    password confirmation: パスワード(確認)
+
   date:
     abbr_day_names:
     - 日

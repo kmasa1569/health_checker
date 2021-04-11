@@ -5,6 +5,20 @@ class ChecklistsController < ApplicationController
     @q = @user.checklists.ransack(params[:q])
     @checklists = @q.result.order(date: :desc).paginate(page: params[:page], per_page: 14)
 
+    @graph = Checklist.where(user_id: params[:user_id]).limit(14)
+    bt = @graph.group_by_day(:date, range: 2.weeks.ago.midnight..Time.now, series: false).sum(:bt)
+    hr = @graph.group_by_day(:date, range: 2.weeks.ago.midnight..Time.now, series: false).sum(:hr)
+    sbp = @graph.group_by_day(:date, range: 2.weeks.ago.midnight..Time.now, series: false).sum(:sbp)
+    dbp = @graph.group_by_day(:date, range: 2.weeks.ago.midnight..Time.now, series: false).sum(:dbp)
+    wt = @graph.group_by_day(:date, range: 2.weeks.ago.midnight..Time.now, series: false).sum(:wt)
+    @data = [
+      { name: "体温", data: bt },
+      { name: "心拍数", data: hr },
+      { name: "収縮期血圧", data: sbp, color: "green" },
+      { name: "拡張期血圧", data: dbp, color: "green" },
+      { name: "体重", data: wt, color: "orange" }
+    ]
+
     # respond_to do |format|
     #   format.html
     #   format.csv { send_data @checklists.generate_csv, filename: "checklists-#{Time.zone.now.strftime('%Y%m%d%S')}.csv" }

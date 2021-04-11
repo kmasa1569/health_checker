@@ -2,8 +2,7 @@ h1 #{@user.name} 様
 
 = link_to '本日の値を入力', new_user_checklist_path, class: 'btn btn-primary'
 
-/ = line_chart @checklists.group_by_day_of_month(:date, series: false).average(:bt), curve: faulse
-
+= line_chart @data
 .mb-3
 table.table.table-striped
   thead.thead-default
@@ -11,11 +10,9 @@ table.table.table-striped
       th= sort_link(@q, :date, default_order: :asc)
       th= Checklist.human_attribute_name(:bt)
       th= Checklist.human_attribute_name(:hr)
-      / th= Checklist.human_attribute_name(:bp)
-      th colspan='2' = Checklist.human_attribute_name(:bp)
+      th colspan='3' = Checklist.human_attribute_name(:bp)
       th= Checklist.human_attribute_name(:wt)
-      th
-      th
+      th colspan='2'
   tbody
     - @checklists.each do |checklist|
       tr
@@ -23,6 +20,7 @@ table.table.table-striped
         td= checklist.bt
         td= checklist.hr
         td= checklist.sbp
+        td= "/"
         td= checklist.dbp
         td= checklist.wt
         td= link_to '編集', edit_user_checklist_path(@user, checklist), class: 'btn btn-primary mr-3'

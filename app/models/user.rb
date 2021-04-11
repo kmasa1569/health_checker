@@ -57,6 +57,6 @@ class User < ApplicationRecord
 
   # sexカラムの定義
   enum sex: {
-    male: 0, female: 1
+    男性: 0, 女性: 1
   }
 end
