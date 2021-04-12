@@ -24,7 +24,6 @@ ja:
         dbp: 拡張期血圧
         wt: 体重
         memo: メモ
-    attributes:
       user:
         id: ID
         name: 名前

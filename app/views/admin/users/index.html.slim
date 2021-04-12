@@ -14,7 +14,7 @@ h1 All Medical Staff
 
 .mb-3
 table.table.table-hover
-  thead.thead-default
+  thead.text-center
     tr
       th= User.human_attribute_name(:id)
       th= User.human_attribute_name(:name)
@@ -22,7 +22,7 @@ table.table.table-hover
       th= User.human_attribute_name(:profession)
       th
       th
-  tbody
+  tbody.text-center
     - @admin_users.each do |admin_user|
       tr
         td= admin_user.id

@@ -16,7 +16,7 @@ h1 All Patients
 
 .mb-3
 table.table.table-hover
-  thead.thead-default
+  thead.text-center
     tr
       th= User.human_attribute_name(:id)
       th= User.human_attribute_name(:name)
@@ -26,7 +26,7 @@ table.table.table-hover
       th
       th
       th
-  tbody
+  tbody.text-center
     - @users.each do |user|
       tr
         td= user.id
