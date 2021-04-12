@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    # @checklists = @user.checklists
   end
 
   def edit
@@ -28,11 +27,5 @@ class UsersController < ApplicationController
   end
 
   private
-  def user_params
-    params.require(:user).permit(:id, :name, :email, :admin, :password, :password_confirmations, :dob, :sex)
-  end
-
-  def set_user
-    @user = User.find(params[:id])
-  end
+    
 end

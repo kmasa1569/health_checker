@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       #Sessionsヘルパーのrememberメソッド
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       - if current_user.admin?
-          redirect_to admin_users_url, notice: 'ログインしました。'
+          redirect_to users_path, notice: 'ログインしました。'
         else
           redirect_to user_checklists_path(user), notice: 'ログインしました。'
         end

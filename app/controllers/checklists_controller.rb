@@ -1,7 +1,9 @@
 class ChecklistsController < ApplicationController
-  # before_action :set_checklist, only: [:show, :edit, :update, :destroy]
+  before_action :set_checklist, only: [:show, :edit, :update, :destroy]
+  before_action :set_checklist_user
+  before_action :browsing_authority
+
   def index
-    @user = User.find(params[:user_id])
     @q = @user.checklists.ransack(params[:q])
     @checklists = @q.result.order(date: :desc).paginate(page: params[:page], per_page: 14)
 
@@ -26,17 +28,13 @@ class ChecklistsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:user_id])
-    @checklist = current_user.checklists.find(params[:id])
   end
 
   def new
-    @user = User.find(params[:user_id])
     @checklist = Checklist.new
   end
 
   def create
-    @user = User.find(params[:user_id])
     @checklist = current_user.checklists.new(checklist_params)
     if @checklist.save
       redirect_to user_checklists_url, notice: '本日の値を入力しました。'
@@ -47,20 +45,14 @@ class ChecklistsController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:user_id])
-    @checklist = current_user.checklists.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:user_id])
-    @checklist = current_user.checklists.find(params[:id])
     @checklist.update!(checklist_params)
     redirect_to user_checklists_url, notice: "#{@checklist.date}を更新しました。"
   end
 
   def destroy
-    @user = User.find(params[:user_id])
-    @checklist = current_user.checklists.find(params[:id])
     @checklist.destroy
     redirect_to user_checklists_url, notice: "#{@checklist.date}を削除しました"
   end
@@ -74,4 +66,13 @@ class ChecklistsController < ApplicationController
       @checklist = current_user.checklists.find(params[:id])
     end
 
+    def set_checklist_user
+      @user = User.find(params[:user_id])
+    end
+
+    def browsing_authority
+      unless current_user.admin || @user == current_user
+        redirect_to root_url
+      end
+    end
 end

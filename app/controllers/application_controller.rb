@@ -24,4 +24,17 @@ class ApplicationController < ActionController::Base
     def logged_in?
       !current_user.nil?
     end
+
+    def set_user
+      @user = User.find(params[:id])
+    end
+
+    def user_params
+      params.require(:user).permit(:id, :name, :email, :admin, :password, :password_confirmations, :dob, :sex)
+    end
+
+    # admin user以外禁
+    def require_admin
+      redirect_to root_url unless current_user.admin?
+    end
 end

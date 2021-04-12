@@ -43,19 +43,5 @@ class Admin::UsersController < ApplicationController
   end
 
   private
-    def user_params
-      params.require(:user).permit(:id,:name, :email, :admin, :password, :password_confirmations, :profession, :dob, :sex)
-    end
-
-    def set_user
-      @user = User.find(params[:id])
-    end
-
-    # admin user以外禁
-    def require_admin
-      redirect_to root_url unless current_user.admin?
-    end
-
-
 
 end
