@@ -28,10 +28,4 @@ table.table.table-striped
 
 = will_paginate(@checklist, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'pagination justify-content-center')
 
-/ = link_to 'エクスポート', checklists_path(format: :csv), class: 'btn btn-primary mb-3'
-/ = search_form_for @q, url: checklists_path, class: 'mb-5' do |f|
-/   .form-group.row
-/     = f.label :date_cont, '日付', class: 'col-sm-2 col-form-label'
-/     .col-sm-8
-/       = f.search_field :date_cont, class: 'form-control'
-/     = f.submit class: 'btn btn-outline-primary'
+= link_to 'エクスポート', user_checklists_path(format: :csv), class: 'btn btn-primary mb-3'

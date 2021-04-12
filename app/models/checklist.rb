@@ -1,6 +1,6 @@
 class Checklist < ApplicationRecord
   def self.csv_attributes
-    ['date', 'bt', 'hr', 'sbp', 'dbp', 'wt']
+    ['date', 'bt', 'hr', 'sbp', 'dbp', 'wt', 'memo']
   end
 
   def self.generate_csv

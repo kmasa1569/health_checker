@@ -21,10 +21,10 @@ class ChecklistsController < ApplicationController
       { name: "体重", data: wt, color: "orange" }
     ]
 
-    # respond_to do |format|
-    #   format.html
-    #   format.csv { send_data @checklists.generate_csv, filename: "checklists-#{Time.zone.now.strftime('%Y%m%d%S')}.csv" }
-    # end
+    respond_to do |format|
+      format.html
+      format.csv { send_data @checklists.generate_csv, filename: "checklists-#{Time.zone.now.strftime('%Y%m%d%S')}.csv" }
+    end
   end
 
   def show
