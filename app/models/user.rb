@@ -33,9 +33,10 @@ class User < ApplicationRecord
   end
 
   # 記憶ダイジェストとcookieの記憶トークン(をハッシュ化したもの)を比較、認証となればtrue
-  def authenticated?(remember_token)
+  def authenticated?(attribute, token)
+    digest = self.send("#{attribute}_digest") #sendは動的にメソッドを呼び出してくれる
     return false if remember_digest.nil?
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    BCrypt::Password.new(digest).is_password?(token)
   end
 
   # ユーザーのログイン情報を破棄する
@@ -70,5 +71,10 @@ class User < ApplicationRecord
   # パスワード再設定のメールを送信する,deliver_nowは即時送信
   def send_password_reset_email
     UserMailer.password_reset(self).deliver_now
+  end
+
+  # パスワード再設定の期限が切れている場合はtrueを返す
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
   end
 end

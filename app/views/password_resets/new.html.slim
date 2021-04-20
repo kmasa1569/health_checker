@@ -1,7 +1,7 @@
 h1 パスワード再設定
 p 登録しているメールアドレスに再設定用のメールを送ります
 
-= form_with scope: :password_reset, local: true do |f|
+= form_with url: password_resets_path, scope: :password_reset, local: true do |f|
   .form-group
     = f.label :email
     = f.text_field :email, class: 'form-control'
