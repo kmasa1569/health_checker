@@ -1,11 +1,15 @@
-.app-title.navbar.navbar-expand-md.navbar-light.bg-light
-      .navbar-brand Health Checker
-      ul.navbar-nav.ml-auto
-        - if current_user
-          - if current_user.admin?
-              li.nav-item= link_to 'Patients一覧', admin_users_path, class: 'nav-link'
-          - else
-              li.nav-item= link_to 'チェックリスト', checklists_path, class: 'nav-link'
-          li.nav-item= link_to 'ログアウト', root_path, method: :delete, class: 'nav-link'
+.app-title.navbar.navbar-expand-md.navbar-light.bg-light.sticky-top
+  .navbar-brand Health Checker
+  button.navbar-toggler type='button' data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+    span.navbar-toggler-icon
+  .collapse.navbar-collapse id= "navbarNav"
+    ul.navbar-nav.ml-auto
+      - if current_user
+        - if current_user.admin?
+            li.nav-item= link_to 'MedicalStaff一覧', admin_users_path, class: 'nav-link'
+            li.nav-item= link_to 'Patients一覧', users_path, class: 'nav-link'
         - else
-          li.nav-item= link_to 'ログイン', root_path, class: 'nav-link'
+            li.nav-item= link_to 'チェックリスト', user_checklists_path, class: 'nav-link'
+        li.nav-item= link_to 'ログアウト', root_path, method: :delete, class: 'nav-link'
+      - else
+        li.nav-item= link_to 'ログイン', root_path, class: 'nav-link'
