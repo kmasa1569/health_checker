@@ -1,16 +1,18 @@
 h1 パスワードの変更
 
-/ - if @user.errors.present?
-/   ul#error_explanation
-/     - @user.errors.full_messages.each do |message|
-/       li= message
 
-= form_with model: @user, local: true do |f|
+= form_with model: @user, url: password_reset_path(params[:id]), local: true do |f|
+  - if @user.errors.present?
+    ul#error_explanation
+      - @user.errors.full_messages.each do |message|
+        li= message
+
+  = hidden_field_tag :email, @user.email
+
   .form-group
     = f.label :password
     = f.password_field :password, class: 'form-control'
   .form-group
     = f.label :password_confirmation
     = f.password_field :password_confirmation, class: 'form-control'
-  = hidden_field_tag :email, @user.email
   = f.submit nil, class: 'btn btn-primary'
